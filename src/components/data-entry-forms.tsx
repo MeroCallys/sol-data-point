@@ -21,7 +21,7 @@ function CarServicesFields() {
   return (
     <>
       <h2 className="text-xl font-bold text-gray-600">
-        SUPPLIES ORDER DETAILS
+        CAR SERVICE ORDER DETAILS
       </h2>
       <div className="flex gap-5">
         <div className="w-1/2">
@@ -373,7 +373,7 @@ function ProfileFields({ header }: { header: string }) {
         <span className="text-sm font-medium text-gray-400">COMPANY NAME</span>
         <input
           type="text"
-          placeholder="Enter company name.."
+          placeholder="eg. GO MAZDA, GATEWAY SUBARU, KROSS MITSUBISHI.."
           id="company"
           className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         />
@@ -385,7 +385,7 @@ function ProfileFields({ header }: { header: string }) {
         </span>
         <input
           type="text"
-          placeholder="Enter company name.."
+          placeholder="eg. JOHN"
           id="requestors-first-name"
           className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         />
@@ -397,7 +397,7 @@ function ProfileFields({ header }: { header: string }) {
         </span>
         <input
           type="text"
-          placeholder="Enter company name.."
+          placeholder="eg. DOE"
           id="requestors-last-name"
           className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
         />
@@ -443,7 +443,7 @@ function ProfileFields({ header }: { header: string }) {
           <span className="text-sm font-medium text-gray-400">STREET</span>
           <input
             type="text"
-            placeholder="4144 97 ST"
+            placeholder="eg. 1234 56 ST"
             id="street"
             className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
@@ -457,7 +457,7 @@ function ProfileFields({ header }: { header: string }) {
           <input
             type="text"
             id="city"
-            placeholder="Edmonton"
+            placeholder="eg. EDMONTON"
             className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
         </div>
@@ -471,7 +471,7 @@ function ProfileFields({ header }: { header: string }) {
           <span className="text-sm font-medium text-gray-400">POSTAL</span>
           <input
             type="text"
-            placeholder="TM2 23M"
+            placeholder="eg. T1T 2M3"
             id="postal"
             className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
@@ -484,7 +484,7 @@ function ProfileFields({ header }: { header: string }) {
           <span className="text-sm font-medium text-gray-400">PROVINCE</span>
           <input
             type="text"
-            placeholder="Alberta"
+            placeholder="eg. ALBERTA"
             id="province"
             className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
@@ -497,7 +497,7 @@ function ProfileFields({ header }: { header: string }) {
           <span className="text-sm font-medium text-gray-400">COLOR</span>
           <input
             type="text"
-            value="Canada"
+            value="CANADA"
             id="country"
             disabled
             className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
