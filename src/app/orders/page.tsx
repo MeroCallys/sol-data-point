@@ -1,6 +1,6 @@
 import React from "react";
 import ControlPanel from "@/components/control-panel";
-import DataCards from "@/components/data-cards";
+import { OrderCards } from "@/components/entry-cards";
 import { fetchData } from "@/placeholders/placeholder";
 
 export default function OrdersPage() {
@@ -13,7 +13,7 @@ export default function OrdersPage() {
         placeholder={"Search stock, po, vin..."}
       />
       <div className="w-full h-auto flex  flex-col gap-5 ">
-        <DataCards fetchData={fetchData} />
+        <OrderCards fetchData={fetchData} />
       </div>
     </section>
   );

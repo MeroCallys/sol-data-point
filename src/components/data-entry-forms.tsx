@@ -577,7 +577,7 @@ export default function DateEntryForms() {
         </div>
         {addProfile && (
           <>
-            <div>
+            <div className="my-2">
               <span className="flex gap-4 justify-center items-center">
                 <hr className="grow bg-gray-500" />
                 <span className="w-15 font-bold text-sm text-gray-500">OR</span>
@@ -614,11 +614,18 @@ export default function DateEntryForms() {
         )}
 
         {addProfileForm ? (
-          <div className="my-5">
+          <div className="mt-7 mb-5">
             <ProfileFields header={"PROFILE"} />
+            <span className="flex gap-4 justify-center items-center">
+              <hr className="grow bg-gray-500" />
+            </span>
           </div>
         ) : null}
-        {/* <h2 className="text-xl font-bold text-gray-600">ADD ORDER DETAILS</h2> */}
+        <div className="my-3">
+          <span className="flex gap-4 justify-center items-center">
+            <hr className="grow bg-gray-500" />
+          </span>
+        </div>
         <div className="flex flex-col">
           <label
             htmlFor="type"
