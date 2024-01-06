@@ -13,7 +13,7 @@ export default function Navbar() {
         <Link href="/profiles">PROFILES</Link>
         <Link href="/orders">ORDERS</Link>
       </nav>
-      <div className="w-1/5  flex justify-end items-center ">
+      <div className="w-1/5 pr-10 flex justify-end items-center ">
         <div className="bg-slate-300 w-12 aspect-square rounded-full"></div>
       </div>
     </header>

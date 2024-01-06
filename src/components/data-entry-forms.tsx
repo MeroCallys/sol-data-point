@@ -1,4 +1,6 @@
 "use client";
+
+
 import {
   Container,
   Textarea,
@@ -6,10 +8,11 @@ import {
   Tel,
   Number,
   Select,
+  Email,
 } from "@/components/form-fields";
-import { X, Plus, Minus, Heading1 } from "lucide-react";
+import { X, Plus, Minus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { ButtonHTMLAttributes, FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import clsx from "clsx";
 import FormButton from "./save-button";
 
@@ -49,6 +52,7 @@ function CarServicesFields() {
       <Container className="flex gap-5">
         <Container className="w-1/2">
           <Select
+            key={1}
             onChange={carStatusHandler}
             label={"CONDITION"}
             name={"condition"}
@@ -255,7 +259,6 @@ export function ProfileFields({ header }: { header: string }) {
       <Container className="flex w-full gap-5">
         <Container className="w-1/2">
           <Tel
-            type="tel"
             label={"PHONE"}
             name="phone"
             placeholder={"eg. 123-456-7890"}
@@ -264,10 +267,9 @@ export function ProfileFields({ header }: { header: string }) {
           />
         </Container>
         <Container className="w-1/2">
-          <Tel
-            type="tel"
-            label={"PHONE"}
-            name="phone"
+          <Email
+            label={"EMAIL"}
+            name="email"
             placeholder={"eg. dummy@sample.com"}
             pattern={".+@example.com"}
             required
@@ -298,7 +300,7 @@ export function ProfileFields({ header }: { header: string }) {
             label={"COUNTRY"}
             name={"country"}
             placeholder="CANADA"
-            value={"CANADA"}
+            defaultValue={"CANADA"}
           />
         </Container>
       </Container>
@@ -314,7 +316,14 @@ export function ProfileFields({ header }: { header: string }) {
   );
 }
 
-export function AddOrderForm() {
+{
+  /* receive form action here */
+}
+export function AddOrderForm({
+  action,
+}: {
+  action?: (formData: FormData) => [];
+}) {
   const [formType, setFormType] = useState<string>("");
   const [addProfile, setAddProfile] = useState<boolean>(true);
   const [addProfileForm, setAddProfileForm] = useState<boolean>(false);
@@ -413,7 +422,7 @@ export function AddOrderForm() {
           )}
 
           {addProfileForm ? (
-            <Container className="w-full flex flex-col ">
+            <Container className="w-full flex flex-col">
               <ProfileFields header={"PROFILE"} />
               <span className="flex gap-4 justify-center items-center">
                 <hr className="grow bg-gray-500" />
@@ -434,16 +443,16 @@ export function AddOrderForm() {
             />
           </Container>
           {formType === "Car Services" ? (
-            <Container className="w-full flex flex-col gap-2 my-4">
+            <Container className="w-full flex flex-col gap-2 mt-4">
               <CarServicesFields />
-              <Container className="my-5">
+              <Container className="mt-6">
                 <FormButton type={"SAVE"} />
               </Container>
             </Container>
           ) : formType === "Supplies" ? (
-            <Container className="w-full flex flex-col gap-2 my-4">
+            <Container className="w-full flex flex-col gap-2 mt-4">
               <SuppliesFields />
-              <Container className="my-5">
+              <Container className="mt-6">
                 <FormButton type={"SAVE"} />
               </Container>
             </Container>
@@ -453,3 +462,30 @@ export function AddOrderForm() {
     </>
   );
 }
+
+export function AddProfileForm({
+  action,
+}: {
+  action?: (formData: FormData) => [];
+}) {
+  const router = useRouter();
+  return (
+    <>
+      <form
+        action={action}
+        className="w-full p-10 flex flex-col gap-2 relative"
+      >
+        <X
+          onClick={() => router.back()}
+          className="absolute translate-x-2 -translate-y-2 right-0 top-0 size-8 text-gray-500 cursor-pointer"
+        />
+        <ProfileFields header={"PROFILE"} />
+        <Container className="mt-6">
+          <FormButton type={"SAVE"} />
+        </Container>
+      </form>
+    </>
+  );
+}
+
+

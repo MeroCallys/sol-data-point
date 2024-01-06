@@ -1,7 +1,7 @@
 import { FormEvent } from "react";
 
 interface TextProps {
-  value?: string | number;
+  defaultValue?: string | number;
   label?: string;
   name?: string;
   type?: "tel" | "text";
@@ -28,22 +28,25 @@ interface ContainerProps extends TextProps {
 }
 
 interface SelectProps extends TextProps {
+  key?: number | string;
   className?: string;
   onChange?: (event: FormEvent<HTMLSelectElement>) => void;
   options?: string[] | any;
 }
-export function Text({ label, value, name, placeholder }: TextProps) {
+
+export function Text({ label, defaultValue, name, placeholder }: TextProps) {
   return (
     <>
-      <label className="block" htmlFor={name}>
-        <span className="text-sm font-medium text-gray-400">{label}</span>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-400">
+        {label}
       </label>
       <input
+        autoComplete="on"
         type="text"
         placeholder={placeholder}
         name={name}
         id={name}
-        value={value}
+        defaultValue={defaultValue}
         className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
       />
     </>
@@ -52,10 +55,11 @@ export function Text({ label, value, name, placeholder }: TextProps) {
 export function Tel({ label, name, placeholder, pattern }: TelProps) {
   return (
     <>
-      <label className="block" htmlFor={name}>
-        <span className="text-sm font-medium text-gray-400">{label}</span>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-400">
+        {label}
       </label>
       <input
+        autoComplete="on"
         type={"tel"}
         pattern={pattern}
         required
@@ -70,10 +74,11 @@ export function Tel({ label, name, placeholder, pattern }: TelProps) {
 export function Email({ label, name, placeholder, pattern }: EmailProps) {
   return (
     <>
-      <label className="block" htmlFor={name}>
-        <span className="text-sm font-medium text-gray-400">{label}</span>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-400">
+        {label}
       </label>
       <input
+        autoComplete="on"
         type={"email"}
         pattern={pattern}
         required
@@ -89,8 +94,8 @@ export function Email({ label, name, placeholder, pattern }: EmailProps) {
 export function Number({ label, name, disabled, placeholder }: NumberProps) {
   return (
     <>
-      <label className="block" htmlFor={name}>
-        <span className="text-sm font-medium text-gray-400">{label}</span>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-400">
+        {label}
       </label>
       <input
         disabled={disabled}
@@ -106,8 +111,8 @@ export function Number({ label, name, disabled, placeholder }: NumberProps) {
 export function Textarea({ rows, label, name, placeholder }: TextareaProps) {
   return (
     <>
-      <label className="block" htmlFor={name}>
-        <span className="text-sm font-medium text-gray-400">{label}</span>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-400">
+        {label}
       </label>
       <textarea
         rows={rows}
@@ -120,17 +125,17 @@ export function Textarea({ rows, label, name, placeholder }: TextareaProps) {
   );
 }
 
-export function Select({ label, name, onChange, options }: SelectProps) {
+export function Select({ label, name, onChange, options, key }: SelectProps) {
   return (
     <>
-      <label
-        htmlFor={name}
-        className="block text-xs font-medium text-gray-400 "
-      />
-      <span className="text-sm font-medium text-gray-400">{label}</span>
+      <label htmlFor={name} className="block text-sm font-medium text-gray-400">
+        {label}
+      </label>
       <select
+        key={key}
         onChange={onChange}
-        name="condition"
+        name={name}
+        id={name}
         className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
       >
         {options.map((option: string[] | any) => (
