@@ -12,7 +12,7 @@ export default function OrdersPage() {
         linkTo={"/orders/add-order"}
         placeholder={"Search stock, po, vin..."}
       />
-      <div className="w-full h-auto flex  flex-col gap-5 ">
+      <div className="w-full h-auto flex  flex-col gap-3 ">
         <OrderCards fetchData={fetchData} />
       </div>
     </section>

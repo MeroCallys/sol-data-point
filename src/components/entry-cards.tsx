@@ -107,7 +107,7 @@ export function ProfileCards({
             </span>
           </div>
 
-          <div className="flex flex-col  items-start w-2/5 gap-2 md:gap-5  sm:flex-row">
+          <div className="flex flex-col  items-start w-1/2 gap-2 md:gap-5  sm:flex-row">
             <div className="flex flex-col items-start">
               <span className="text-xs md:text-sm text-gray-400">UNPAID</span>
               <span className="font-bold text-sm md:text-lg text-gray-500">
@@ -124,8 +124,11 @@ export function ProfileCards({
               <span className="text-xs md:text-sm text-gray-400">
                 REQUESTOR
               </span>
-              <span className="font-bold text-sm md:text-lg text-gray-500">
-                {`${data.requestorFirstName} ${data.requestorLastName} `}
+              <span className="flex gap-1 font-bold text-sm md:text-lg text-gray-500">
+                <span>{data.requestorFirstName}</span>
+                <span className="hidden sm:block">
+                  {data.requestorLastName}
+                </span>
               </span>
             </div>
           </div>

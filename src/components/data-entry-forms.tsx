@@ -1,6 +1,13 @@
 "use client";
-
-import { X, Plus, Minus } from "lucide-react";
+import {
+  Container,
+  Textarea,
+  Text,
+  Tel,
+  Number,
+  Select,
+} from "@/components/form-fields";
+import { X, Plus, Minus, Heading1 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ButtonHTMLAttributes, FormEvent, useState } from "react";
 import clsx from "clsx";
@@ -23,203 +30,116 @@ function CarServicesFields() {
       <h2 className="text-xl font-bold text-gray-600">
         CAR SERVICE ORDER DETAILS
       </h2>
-      <div className="flex gap-5">
-        <div className="w-1/2">
-          <label
-            htmlFor="po-wo"
-            className="block mb-2 text-xs font-medium text-gray-400 "
+      <Container className="flex gap-5">
+        <Container className="w-1/2">
+          <Text
+            label={"PO / WO"}
+            name={"po-wo"}
+            placeholder={"eg. 66123, 654322.."}
           />
-          <span className="text-sm font-medium text-gray-400">PO / WO</span>
-          <input
-            type="text"
-            placeholder="eg. 66123"
-            id="po-wo"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+        </Container>
+        <Container className="w-1/2">
+          <Text
+            label={"STOCK"}
+            name={"stock"}
+            placeholder={"eg. 24CRO123, 25OUT324"}
           />
-        </div>
-        <div className="w-1/2">
-          <label
-            htmlFor="stock"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">STOCK</span>
-          <input
-            type="text"
-            id="stock"
-            placeholder="eg. 24CRO123, 25OUT324"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-      </div>
-      <div className="flex gap-5">
-        <div className="w-1/2">
-          <label
-            htmlFor="condition"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">CONDITION</span>
-          <select
+        </Container>
+      </Container>
+      <Container className="flex gap-5">
+        <Container className="w-1/2">
+          <Select
             onChange={carStatusHandler}
-            id="condition"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          >
-            <option>Choose condition..</option>
-            <option>NEW</option>
-            <option>USED</option>
-          </select>
-        </div>
-        <div className="w-1/2">
-          <label
-            htmlFor="mileage"
-            className="block mb-2 text-xs font-medium text-gray-400 "
+            label={"CONDITION"}
+            name={"condition"}
+            options={["Choose condition..", "NEW", "USED"]}
           />
-          <span className="text-sm font-medium text-gray-400">MILEAGE</span>
-          <input
+        </Container>
+        <Container className="w-1/2">
+          <Number
+            label="MILEAGE"
+            name="mileage"
             disabled={isCarStatusNew}
             placeholder={clsx(
               { "NEW CAR": isCarStatusNew },
               { "Enter the mileage..": !isCarStatusNew }
             )}
-            type="number"
-            id="mileage"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+          ></Number>
+        </Container>
+      </Container>
+      <Container className="flex gap-5">
+        <Container className="w-1/2">
+          <Text
+            label={"BRAND"}
+            name={"brand"}
+            placeholder={"eg. SUBARU, MAZDA, MISTUBISHI.."}
           />
-        </div>
-      </div>
-      <div className="flex gap-5">
-        <div className="w-1/2">
-          <label
-            htmlFor="brand"
-            className="block mb-2 text-xs font-medium text-gray-400 "
+        </Container>
+        <Container className="w-1/2">
+          <Text
+            label={"VIN"}
+            name={"vin"}
+            placeholder={"eg. RH123456, PH098765.."}
           />
-          <span className="text-sm font-medium text-gray-400">BRAND</span>
-          <input
-            type="text"
-            placeholder="eg. SUBARU, MAZDA, MISTUBISHI.."
-            id="brand"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+        </Container>
+      </Container>
+      <Container className="flex gap-5">
+        <Container className="w-2/6">
+          <Text label={"YEAR"} name={"year"} placeholder={"eg. 25, 24, 23.."} />
+        </Container>
+        <Container className="w-2/6">
+          <Text
+            label={"MODEL"}
+            name={"model"}
+            placeholder={"eg. CX 30, CROSSTREK.."}
           />
-        </div>
-        <div className="w-1/2">
-          <label
-            htmlFor="vin"
-            className="block mb-2 text-xs font-medium text-gray-400 "
+        </Container>
+        <Container className="w-2/6">
+          <Text
+            label={"COLOR"}
+            name={"color"}
+            placeholder={"eg. M. GREY, P. WHITE.."}
           />
-          <span className="text-sm font-medium text-gray-400">VIN</span>
-          <input
-            type="text"
-            id="vin"
-            placeholder="eg. RH123456, PH098765.."
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-      </div>
-      <div className="flex gap-5">
-        <div className="w-2/6">
-          <label
-            htmlFor="year"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">YEAR</span>
-          <input
-            type="text"
-            placeholder="eg. 25, 24, 23.."
-            id="year"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-        <div className="w-2/6">
-          <label
-            htmlFor="model"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">MODEL</span>
-          <input
-            type="text"
-            placeholder="eg. CX 30, CROSSTREK.."
-            id="model"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-        <div className="w-2/6">
-          <label
-            htmlFor="color"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">COLOR</span>
-          <input
-            type="text"
-            id="color"
-            placeholder="eg. M. GREY, P. WHITE.."
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="order-description" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">
-          ORDER DESCRIPTION
-        </span>
-        <input
-          type="text"
-          placeholder="eg. H, F, M, B, DC, AP, RL, DE.."
-          id="order-description"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+        </Container>
+      </Container>
+      <Container className="flex flex-col w-full">
+        <Text
+          label={"ORDER DESCRIPTION"}
+          name={"order-description"}
+          placeholder={"eg. H, F, M, B, DC, AP, RL, DE.."}
         />
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="notes" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">NOTES</span>
-        <textarea
+      </Container>
+      <Container className="flex flex-col w-full">
+        <Textarea
           rows={4}
-          placeholder="Anything to say about this order?"
-          id="notes"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+          label={"NOTES"}
+          name={"notes"}
+          placeholder={"Anything to say about this order?"}
         />
-      </div>
-      <div className="flex flex-col">
-        <label
-          htmlFor="type"
-          className="block mb-2 text-xs font-medium text-gray-400 "
+      </Container>
+      <Container className="flex flex-col w-full">
+        <Select
+          label={"REFERRED BY"}
+          name={"referred-by"}
+          options={["None", "Marty", "Dyana", "Lui", "Ivan", "Daris", "Jared"]}
+        ></Select>
+      </Container>
+      <Container className="flex flex-col w-full">
+        <Select
+          label={"LOG BY"}
+          name={"log-by"}
+          options={[
+            "None",
+            "Marty",
+            "Dyana",
+            "Lui",
+            "Ivan",
+            "Daris",
+            "Jared",
+            "Allan",
+          ]}
         />
-        <span className="text-sm font-medium text-gray-400">REFERRED BY</span>
-        <select
-          onChange={carStatusHandler}
-          id="referred-by"
-          className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-        >
-          <option>None</option>
-          <option>Marty</option>
-          <option>Dyana</option>
-          <option>Lui</option>
-          <option>Ivan</option>
-          <option>Daris</option>
-          <option>Jared</option>
-        </select>
-      </div>
-      <div className="flex flex-col">
-        <label
-          htmlFor="log-by"
-          className="block mb-2 text-xs font-medium text-gray-400 "
-        />
-        <span className="text-sm font-medium text-gray-400">LOG BY</span>
-        <select
-          onChange={carStatusHandler}
-          id="log-by"
-          className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-        >
-          <option>None</option>
-          <option>Marty</option>
-          <option>Dyana</option>
-          <option>Lui</option>
-          <option>Ivan</option>
-          <option>Daris</option>
-          <option>Jared</option>
-        </select>
-      </div>
-      <div className="w-full flex flex-col mt-5">
-        <FormButton type={"SAVE"} />
-      </div>
+      </Container>
     </>
   );
 }
@@ -230,297 +150,171 @@ function SuppliesFields() {
       <h2 className="text-xl font-bold text-gray-600">
         SUPPLIES ORDER DETAILS
       </h2>
-      <div className="flex flex-col">
-        <label htmlFor="brand" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">BRAND</span>
-        <input
-          type="text"
-          placeholder="Enter the brand name.."
-          id="brand"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+      <Container className="w-full flex-col">
+        <Text
+          label={"BRAND"}
+          name={"brand"}
+          placeholder={"eg. Verleno, X Shield..."}
         />
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="material" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">MATERIAL</span>
-        <input
-          type="text"
-          placeholder="Enter the type of material.."
-          id="material"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+      </Container>
+      <Container className="w-full flex flex-col">
+        <Text
+          label={"MATERIAL"}
+          name="material"
+          placeholder={"eg. PPF Gloss, Ceramic Coating.."}
         />
-      </div>
-      <div className="flex gap-5">
-        <div className="w-2/6">
-          <label
-            htmlFor="rollid-or-serial-number"
-            className="block mb-2 text-xs font-medium text-gray-400 "
+      </Container>
+      <Container className="w-full flex gap-5">
+        <Container className="w-2/6">
+          <Text
+            label={"ROLL ID"}
+            name={"roll-id"}
+            placeholder="eg. A12345678.."
           />
-          <span className="text-sm font-medium text-gray-400">ROLL ID</span>
-          <input
-            type="text"
-            placeholder="Enter roll id or serial number.."
-            id="roll-id-or-serial-number"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+        </Container>
+        <Container className="w-2/6">
+          <Text label={"LOT"} name={"lot"} placeholder="eg. B12, B34, B56.." />
+        </Container>
+        <Container className="w-2/6">
+          <Text
+            label={"QUANTITY"}
+            name={"eg. 1 bottle, 1 roll"}
+            placeholder="eg. B12, B34, B56.."
           />
-        </div>
-        <div className="w-2/6">
-          <label
-            htmlFor="lot"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">LOT</span>
-          <input
-            type="text"
-            placeholder="Enter lot number.."
-            id="lot"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-        <div className="w-2/6">
-          <label
-            htmlFor="quantity"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">QUANTITY</span>
-          <input
-            type="text"
-            id="quantity"
-            placeholder="eg. 1 bottle, 1 roll"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="notes" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">NOTES</span>
-        <textarea
+        </Container>
+      </Container>
+      <Container className="w-full flex flex-col">
+        <Textarea
           rows={4}
-          placeholder="Anything to say about this order?.."
-          id="notes"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+          label={"NOTES"}
+          name={"notes"}
+          placeholder={"Say anything about this order.."}
         />
-      </div>
-      <div className="flex flex-col">
-        <label
-          htmlFor="type"
-          className="block mb-2 text-xs font-medium text-gray-400 "
+      </Container>
+      <Container className="w-full flex flex-col">
+        <Select
+          label={"REFERRED BY"}
+          name={"referred-by"}
+          options={[
+            "None",
+            "Marty",
+            "Dyana",
+            "Lui",
+            "Ivan",
+            "Daris",
+            "Jared",
+            "Allan",
+          ]}
         />
-        <span className="text-sm font-medium text-gray-400">REFERRED BY</span>
-        <select
-          id="referred-by"
-          className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-        >
-          <option>None</option>
-          <option>Marty</option>
-          <option>Dyana</option>
-          <option>Lui</option>
-          <option>Ivan</option>
-          <option>Daris</option>
-          <option>Jared</option>
-        </select>
-      </div>
-      <div className="flex flex-col">
-        <label
-          htmlFor="log-by"
-          className="block mb-2 text-xs font-medium text-gray-400 "
+      </Container>
+      <Container className="w-full flex flex-col">
+        <Select
+          label={"LOG BY"}
+          name={"log-by"}
+          options={["Marty", "Dyana", "Lui", "Ivan", "Daris", "Jared", "Allan"]}
         />
-        <span className="text-sm font-medium text-gray-400">LOG BY</span>
-        <select
-          id="log-by"
-          className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-        >
-          <option>None</option>
-          <option>Marty</option>
-          <option>Dyana</option>
-          <option>Lui</option>
-          <option>Ivan</option>
-          <option>Daris</option>
-          <option>Jared</option>
-        </select>
-      </div>
-      <div className="w-full flex flex-col mt-5">
-        <FormButton type={"SAVE"} />
-      </div>
+      </Container>
     </>
   );
 }
 
-function ProfileFields({ header }: { header: string }) {
+export function ProfileFields({ header }: { header: string }) {
   return (
     <>
-      <h2 className="text-xl font-bold text-gray-600">
+      <h2 className="text-2xl font-bold text-gray-600">
         ADD {header.toUpperCase()}
       </h2>
-      <div className="flex flex-col">
-        <label
-          htmlFor="category"
-          className="block mb-2 text-xs font-medium text-gray-400 "
+      <Container className="flex flex-col w-full">
+        <Select
+          label={"CATEGORY"}
+          name={"category"}
+          options={["Select a category..", "Walk-in", "Dealership"]}
         />
-        <span className="text-sm font-medium text-gray-400">CATEGORY</span>
-        <select
-          name="category"
-          id="type"
-          className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-        >
-          <option>Select a category..</option>
-          <option>Walk-in</option>
-          <option>Dealership</option>
-        </select>
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="company" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">COMPANY NAME</span>
-        <input
-          type="text"
-          placeholder="eg. GO MAZDA, GATEWAY SUBARU, KROSS MITSUBISHI.."
-          id="company"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+      </Container>
+      <Container className="flex flex-col w-full">
+        <Text
+          label={"COMPANY"}
+          name={"name"}
+          placeholder={"eg. GO MAZDA, GATEWAY SUBARU, KROSS MITSUBISHI.."}
         />
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="requestors-first-name" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">
-          {"REQUESTOR'S FIRST NAME"}
-        </span>
-        <input
-          type="text"
-          placeholder="eg. JOHN"
-          id="requestors-first-name"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+      </Container>
+      <Container className="flex flex-col w-full">
+        <Text
+          label={"REQUESTOR'S FIRST NAME"}
+          name={"requestors-first-name"}
+          placeholder={"eg. JOHN"}
         />
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="requestors-last-name" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">
-          {"REQUESTOR'S LAST NAME"}
-        </span>
-        <input
-          type="text"
-          placeholder="eg. DOE"
-          id="requestors-last-name"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+      </Container>
+      <Container className="flex flex-col w-full">
+        <Text
+          label={"REQUESTOR'S LAST NAME"}
+          name={"requestors-last-name"}
+          placeholder={"eg. DOE"}
         />
-      </div>
-      <div className="flex gap-5">
-        <div className="w-1/2">
-          <label
-            htmlFor="phone"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">PHONE</span>
-          <input
+      </Container>
+      <Container className="flex w-full gap-5">
+        <Container className="w-1/2">
+          <Tel
             type="tel"
-            placeholder="123-456-7890"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            label={"PHONE"}
+            name="phone"
+            placeholder={"eg. 123-456-7890"}
+            pattern={"[0-9]{3}-[0-9]{3}-[0-9]{4}"}
             required
-            id="phone"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
-        </div>
-        <div className="w-1/2">
-          <label
-            htmlFor="email"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">EMAIL</span>
-          <input
-            type="email"
-            pattern=".+@example\.com"
+        </Container>
+        <Container className="w-1/2">
+          <Tel
+            type="tel"
+            label={"PHONE"}
+            name="phone"
+            placeholder={"eg. dummy@sample.com"}
+            pattern={".+@example.com"}
             required
-            id="email"
-            placeholder="dummy@sample.com"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
           />
-        </div>
-      </div>
-      <div className="flex gap-5">
-        <div className="w-1/2">
-          <label
-            htmlFor="street"
-            className="block mb-2 text-xs font-medium text-gray-400 "
+        </Container>
+      </Container>
+      <Container className="flex w-full gap-5">
+        <Container className="w-1/2">
+          <Text label={"STREET"} name="street" placeholder={"eg. 1234 56 ST"} />
+        </Container>
+        <Container className="w-1/2">
+          <Text
+            label={"CITY"}
+            name="city"
+            placeholder={"eg. Edmonton, Smokey Lake.."}
           />
-          <span className="text-sm font-medium text-gray-400">STREET</span>
-          <input
-            type="text"
-            placeholder="eg. 1234 56 ST"
-            id="street"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+        </Container>
+      </Container>
+      <Container className="w-full flex gap-5">
+        <Container className="w-2/6">
+          <Text label="POSTAL" name="postal" placeholder={"eg. T1T 2M3"} />
+        </Container>
+        <Container className="w-2/6">
+          <Text label="PROVINCE" name="province" placeholder={"eg. ALBERTA"} />
+        </Container>
+        <Container className="w-2/6">
+          <Text
+            label={"COUNTRY"}
+            name={"country"}
+            placeholder="CANADA"
+            value={"CANADA"}
           />
-        </div>
-        <div className="w-1/2">
-          <label
-            htmlFor="city"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">CITY</span>
-          <input
-            type="text"
-            id="city"
-            placeholder="eg. EDMONTON"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-      </div>
-      <div className="flex gap-5">
-        <div className="w-2/6">
-          <label
-            htmlFor="postal"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">POSTAL</span>
-          <input
-            type="text"
-            placeholder="eg. T1T 2M3"
-            id="postal"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-        <div className="w-2/6">
-          <label
-            htmlFor="province"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">PROVINCE</span>
-          <input
-            type="text"
-            placeholder="eg. ALBERTA"
-            id="province"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-        <div className="w-2/6">
-          <label
-            htmlFor="country"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-medium text-gray-400">COLOR</span>
-          <input
-            type="text"
-            value="CANADA"
-            id="country"
-            disabled
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          />
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <label htmlFor="price-and-packages" className="block mb-2" />
-        <span className="text-sm font-medium text-gray-400">
-          PRICE AND PACKAGES
-        </span>
-        <textarea
+        </Container>
+      </Container>
+      <Container className="w-full flex flex-col">
+        <Textarea
           rows={4}
-          placeholder="Enter the price and packages for this profile.."
-          id="price-and-packages"
-          className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+          label={"PRICE AND PACKAGES"}
+          name={"price-and-packages"}
+          placeholder={"Enter the price and packages for this profile.."}
         />
-      </div>
+      </Container>
     </>
   );
 }
 
-export default function DateEntryForms() {
+export function AddOrderForm() {
   const [formType, setFormType] = useState<string>("");
   const [addProfile, setAddProfile] = useState<boolean>(true);
   const [addProfileForm, setAddProfileForm] = useState<boolean>(false);
@@ -550,109 +344,112 @@ export default function DateEntryForms() {
   }
 
   return (
-    <form className="w-full p-10 flex flex-col gap-5 relative">
-      <X
-        onClick={() => router.back()}
-        className="absolute translate-x-2 -translate-y-2 right-0 top-0 size-8 text-gray-500 cursor-pointer"
-      />
-      <h2 className="text-2xl font-bold text-gray-600">
-        ADD {formType.toUpperCase()} ORDER
-      </h2>
+    <>
+      <form className="w-full p-10 flex flex-col gap-5 relative">
+        <X
+          onClick={() => router.back()}
+          className="absolute translate-x-2 -translate-y-2 right-0 top-0 size-8 text-gray-500 cursor-pointer"
+        />
+        <h2 className="text-2xl font-bold text-gray-600">
+          ADD {formType.toUpperCase()} ORDER
+        </h2>
 
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col">
-          <label htmlFor="profile" className="block mb-2" />
-          <span className="text-sm font-medium text-gray-400">PROFILE</span>
-          <select
-            onChange={selectProfileHandler}
-            id="profile"
-            className="border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          >
-            <option>{"Select customer's profile.."}</option>
-            <option>Go Mazda</option>
-            <option>Rally Subaru Gateway</option>
-            <option>Mercedes-Benz West</option>
-            <option>Kross Mitsubishi</option>
-          </select>
-        </div>
-        {addProfile && (
-          <>
-            <div className="my-2">
+        <Container className="flex flex-col gap-5">
+          <Container className="w-full flex flex-col">
+            <Select
+              label={"PROFILE"}
+              name={"profile"}
+              onChange={selectProfileHandler}
+              options={[
+                "Select customer's profile..",
+                "Go Mazda",
+                "Rally Subaru Gateway",
+                "Mercedes-Benz West",
+                "Kross Mitsubishi",
+                "AuthoShield Pro",
+                "Mercari Auto",
+              ]}
+            />
+          </Container>
+
+          {addProfile && (
+            <>
+              <Container className="my-2">
+                <span className="flex gap-4 justify-center items-center">
+                  <hr className="grow bg-gray-500" />
+                  <span className="w-15 font-bold text-sm text-gray-500">
+                    OR
+                  </span>
+                  <hr className="grow bg-gray-500" />
+                </span>
+              </Container>
+              <Container className="w-full flex flex-col">
+                <button
+                  onClick={clickAddProfileHandler}
+                  className={clsx(
+                    "w-full text-md px-4 py-4 rounded-lg flex gap-2 justify-center items-center ",
+                    {
+                      "border-none text-white border-2 bg-blue-500 border-blue-500 hover:bg-blue-600":
+                        !addProfileForm,
+                    },
+                    {
+                      "text-gray-500  border-solid bg-none border-2 border-gray-300  hover:bg-gray-400 hover:text-gray-50":
+                        addProfileForm,
+                    }
+                  )}
+                >
+                  {!addProfileForm ? (
+                    <>
+                      <Plus className="" /> {"ADD PROFILE"}
+                    </>
+                  ) : (
+                    <>
+                      <Minus /> {"CANCEL ADDING PROFILE"}
+                    </>
+                  )}
+                </button>
+              </Container>
+            </>
+          )}
+
+          {addProfileForm ? (
+            <Container className="w-full flex flex-col ">
+              <ProfileFields header={"PROFILE"} />
               <span className="flex gap-4 justify-center items-center">
                 <hr className="grow bg-gray-500" />
-                <span className="w-15 font-bold text-sm text-gray-500">OR</span>
-                <hr className="grow bg-gray-500" />
               </span>
-            </div>
-            <div className="w-full flex flex-col">
-              <button
-                onClick={clickAddProfileHandler}
-                className={clsx(
-                  "w-full text-md px-4 py-4 rounded-lg flex gap-2 justify-center items-center ",
-                  {
-                    "border-none text-white  bg-blue-500 hover:bg-blue-600":
-                      !addProfileForm,
-                  },
-                  {
-                    "text-gray-500  border-solid bg-none border-2 border-gray-300  hover:bg-gray-400 hover:text-gray-50":
-                      addProfileForm,
-                  }
-                )}
-              >
-                {!addProfileForm ? (
-                  <>
-                    <Plus className="" /> {"ADD PROFILE"}
-                  </>
-                ) : (
-                  <>
-                    <Minus /> {"CANCEL ADDING PROFILE"}
-                  </>
-                )}
-              </button>
-            </div>
-          </>
-        )}
-
-        {addProfileForm ? (
-          <div className="mt-7 mb-5">
-            <ProfileFields header={"PROFILE"} />
+            </Container>
+          ) : null}
+          <Container className="my-4">
             <span className="flex gap-4 justify-center items-center">
               <hr className="grow bg-gray-500" />
             </span>
-          </div>
-        ) : null}
-        <div className="my-3">
-          <span className="flex gap-4 justify-center items-center">
-            <hr className="grow bg-gray-500" />
-          </span>
-        </div>
-        <div className="flex flex-col">
-          <label
-            htmlFor="type"
-            className="block mb-2 text-xs font-medium text-gray-400 "
-          />
-          <span className="text-sm font-bolds text-gray-500">ORDER TYPE</span>
-          <select
-            name="type"
-            onChange={selectTypeHandler}
-            id="type"
-            className=" border outline-none border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-          >
-            <option>Choose one</option>
-            <option>Car Services</option>
-            <option>Supplies</option>
-          </select>
-        </div>
-        {formType === "Car Services" ? (
-          <div className="my-5">
-            <CarServicesFields />
-          </div>
-        ) : formType === "Supplies" ? (
-          <div className="my-5">
-            <SuppliesFields />
-          </div>
-        ) : null}
-      </div>
-    </form>
+          </Container>
+          <Container className="w-full flex flex-col">
+            <Select
+              label={"ORDER TYPE"}
+              name="order"
+              onChange={selectTypeHandler}
+              options={["Choose type of service..", "Car Services", "Supplies"]}
+            />
+          </Container>
+          {formType === "Car Services" ? (
+            <Container className="w-full flex flex-col gap-2 my-4">
+              <CarServicesFields />
+              <Container className="my-5">
+                <FormButton type={"SAVE"} />
+              </Container>
+            </Container>
+          ) : formType === "Supplies" ? (
+            <Container className="w-full flex flex-col gap-2 my-4">
+              <SuppliesFields />
+              <Container className="my-5">
+                <FormButton type={"SAVE"} />
+              </Container>
+            </Container>
+          ) : null}
+        </Container>
+      </form>
+    </>
   );
 }
